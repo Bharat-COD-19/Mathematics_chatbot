@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Chatbot</title>
+  <style>
+    body { margin: 0; display: flex; font-family: Arial; }
+    .sidebar {
+      width: 250px;
+      background: #ff7f00;
+      color: white;
+      padding: 20px;
+      height: 100vh;
+    }
+    .main {
+      flex: 1;
+      padding: 20px;
+    }
+    .chat-box {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px;
+      background: #ff7f00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Math Chatbot</h2>
+    <p><a href="/chat" style="color:white;">➕ New Chat</a></p>
+    <h4>🕓 Chat History</h4>
+    {% for chat in history %}
+      <div>{{ chat.question[:20] }}...</div>
+    {% endfor %}
+    <br>
+    <a href="/logout" style="color:white;">🚪 Logout</a>
+  </div>
+  <div class="main">
+    <h2>Ask me a math question:</h2>
+    <form method="POST">
+      <input type="text" name="question" placeholder="e.g. solve x**2 - 4 = 0">
+      <button type="submit">Ask</button>
+    </form>
+
+    {% if response %}
+      <div class="chat-box">
+        <strong>Bot:</strong> {{ response }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
